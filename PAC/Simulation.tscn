@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://KindPac.gd" type="Script" id=1]
+[ext_resource path="res://Pac.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Simulation.gd" type="Script" id=3]
+[ext_resource path="res://Pac.gd" type="Script" id=4]
+[ext_resource path="res://FamilyPac.gd" type="Script" id=5]
+
+[node name="Simulation" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+margin_right = 1920.0
+margin_bottom = 1080.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pacs" type="Node" parent="."]
+
+[node name="KindPac" parent="Pacs" instance=ExtResource( 2 )]
+position = Vector2( 117, 107 )
+script = ExtResource( 1 )
+
+[node name="AngryPac" parent="Pacs" instance=ExtResource( 2 )]
+position = Vector2( 942, 343 )
+script = ExtResource( 4 )
+color = "DB4437"
+
+[node name="StrangePac" parent="Pacs" instance=ExtResource( 2 )]
+position = Vector2( 706, 145 )
+color = "F4B400"
+
+[node name="FamilyPac" parent="Pacs" instance=ExtResource( 2 )]
+position = Vector2( 430, 449 )
+script = ExtResource( 5 )
+color = "0F9D58"
+
+[node name="Dots" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.7
+autostart = true
+
+[node name="Day" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Day" to="." method="_on_Day_timeout"]
